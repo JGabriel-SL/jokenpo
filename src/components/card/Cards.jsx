@@ -7,52 +7,41 @@ import scissor from '../../assets/scissor.png'
 
 const data = ['rock', 'paper', 'scissor']
 
+
 const Cards = () => {
   const [hand, setHand] = useState('')
   const [pcHand, setPcHand] = useState('')
-  const [nRandom, setRandom] = useState(0)
+  const [resp, setResp] = useState('')
 
   useEffect(() => {
-    play()
-  }, [hand])
+    // console.log('you: ', hand)
+    // console.log('pc: ', pcHand)
+    validate(hand, pcHand)
+  }, [hand, pcHand])
 
-  useEffect(() => {
-  }, [pcHand])
-
-  function random() {
-    setPcHand(data[Math.floor(Math.random() * (3 - 0) + 0)])
-  }
   
-  function play() {
-    random()
-    console.log(hand)
-    console.log(pcHand)
-
-    validade()
-  }
-  
-  function validade() {
-    if(pcHand === hand) {
-      console.log('empate')
+  const validate = (hand, pcHand) => {
+    if(pcHand === hand && (pcHand !== '' && hand !== '')) {
+      setResp('EMPATOU')
     } else if (pcHand !== hand) {
       if (hand === 'scissor' && pcHand === 'paper') {
-        console.log('tesoura vence papel')
+        setResp('VOCÊ GANHOU!')
       } else if (hand === 'scissor' && pcHand === 'rock') {
-        console.log('tesoura perde para pedra')
+        setResp('VOCÊ PERDEU :(')
       }
-      if (hand == 'paper') {
+      if (hand === 'paper') {
         if (pcHand === 'rock') {
-          console.log('papel vence pedra')
+          setResp('VOCÊ GANHOU!')
         } else if (pcHand === 'scissor') {
-          console.log('papel perde para tesoura')
+          setResp('VOCÊ PERDEU :(')
         }
       }
 
       if (hand === 'rock') {
         if (pcHand === 'scissor') {
-          console.log('papel vence pedra')
-        } else if (pcHand === 'scissor') {
-          console.log('papel perde para tesoura')
+          setResp('VOCÊ GANHOU!')
+        } else if (pcHand === 'paper') {
+          setResp('VOCÊ PERDEU :(')
         }
       }
     }
@@ -60,10 +49,16 @@ const Cards = () => {
 
   return (
     <div>
+      <h5 className="container__title-result">
+        {resp !== '' ? resp : '(O resultado aparece aqui)'}
+      </h5>
+      
       <h5 className="container__title">YOU</h5>
-
       <div className="container__cards">
-        <article className={hand === 'rock' ? 'active container__card' : 'container__card'} onClick={() => setHand('rock')}>
+        <article className={hand === 'rock' ? 'active container__card' : 'container__card'} onClick={() => {
+          setHand('rock')
+          setPcHand(data[Math.floor(Math.random() * (3 - 0) + 0)])
+        }}>
             <div className="container__card-img">
                 <img src={rock} alt="" />
             </div>
@@ -72,7 +67,10 @@ const Cards = () => {
                 <h3>Pedra</h3>
             </div>
         </article>
-        <article className={hand === 'paper' ? 'active container__card' : 'container__card'} onClick={() => setHand('paper')}>
+        <article className={hand === 'paper' ? 'active container__card' : 'container__card'} onClick={() => {
+          setHand('paper')
+          setPcHand(data[Math.floor(Math.random() * (3 - 0) + 0)])
+        }}>
             <div className="container__card-img">
                 <img src={paper} alt="" />
             </div>
@@ -81,7 +79,10 @@ const Cards = () => {
                 <h3>Papel</h3>
             </div>
         </article>
-        <article className={hand === 'scissor' ? 'active container__card' : 'container__card'} onClick={() => setHand('scissor')}>
+        <article className={hand === 'scissor' ? 'active container__card' : 'container__card'} onClick={() => {
+          setHand('scissor')
+          setPcHand(data[Math.floor(Math.random() * (3 - 0) + 0)])
+        }}>
             <div className="container__card-img">
                 <img src={scissor} alt="" />
             </div>
