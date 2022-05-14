@@ -1,0 +1,54 @@
+.container__cards {
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.active {
+    opacity: 1 !important;
+}
+
+.container__card {
+    border: 3px solid #222;
+    border-radius: 5px;
+    padding: 1.8rem;
+
+    margin: 5px 10px;
+    opacity: 0.5;
+    transition: var(--transition);
+    background: transparent;
+}
+
+.container__card:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.container__card-pc {
+    border: 3px solid #222;
+    border-radius: 5px;
+    padding: 1.8rem;
+
+    margin: 5px 10px;
+    opacity: 0.5;
+    transition: var(--transition);
+    background: transparent;
+}
+
+
+.container__card-text {
+    text-align: center;
+}
+
+.container__card-versus {
+    text-align: center;
+    color: #fff9;
+    margin-bottom: 1.5rem;
+}
+
+.container__title {
+    text-align: center;
+    color: #fff9;
+}
